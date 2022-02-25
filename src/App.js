@@ -29,7 +29,7 @@ function App() {
   };
   //fetch tasks
   const fetchTasks = async () => {
-    const res = await fetch("https://hieutanapp.herokuapp.com/tasks/");
+    const res = await fetch("https://hieutanapp.herokuapp.com/tasks");
     const data = await res.json();
     return data;
   };
