@@ -9,14 +9,14 @@ function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`, {
+    await fetch(`https://hieutanapp.herokuapp.com/tasks/${id}`, {
       method: "DELETE",
     });
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
   const addTask = async (task) => {
-    const res = await fetch("http://localhost:5000/tasks", {
+    const res = await fetch("https://hieutanapp.herokuapp.com/tasks", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(task),
@@ -29,13 +29,13 @@ function App() {
   };
   //fetch tasks
   const fetchTasks = async () => {
-    const res = await fetch("http://localhost:5000/tasks");
+    const res = await fetch("https://hieutanapp.herokuapp.com/tasks/");
     const data = await res.json();
     return data;
   };
   //fetch task
   const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`);
+    const res = await fetch(`https://hieutanapp.herokuapp.com/tasks/${id}`);
     const data = await res.json();
     return data;
   };
@@ -50,7 +50,7 @@ function App() {
   const ToggleRemider = async (id) => {
     const taskToggle = await fetchTask(id);
     const updateTask = { ...taskToggle, reminder: !taskToggle.reminder };
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const res = await fetch(`https://hieutanapp.herokuapp.com/tasks/${id}`, {
       method: "PUT",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(updateTask),
